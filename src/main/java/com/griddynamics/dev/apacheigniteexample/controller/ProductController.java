@@ -21,9 +21,11 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product get(@PathVariable("id") @ApiParam("id") String id) {
-        System.out.println(id);
-        return productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+        Product product = productRepository.findById(id);
+        if (product == null) {
+            throw new EntityNotFoundException("Entity not found");
+        }
+        return product;
     }
 
     @GetMapping("/")

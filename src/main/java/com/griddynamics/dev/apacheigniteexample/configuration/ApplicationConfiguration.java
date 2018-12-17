@@ -15,14 +15,12 @@ public class ApplicationConfiguration {
 
     @Bean
     public Ignite igniteInstance() {
-        IgniteConfiguration cfg = new IgniteConfiguration();
-        cfg.setIgniteInstanceName("springDataNode");
-        cfg.setPeerClassLoadingEnabled(true);
-        CacheConfiguration ccfgProduct = new CacheConfiguration("ProductCache");
-        ccfgProduct.setIndexedTypes(String.class, Product.class);
-        cfg.setCacheConfiguration(new CacheConfiguration[] {
-                ccfgProduct
-        });
-        return Ignition.start(cfg);
+        IgniteConfiguration config = new IgniteConfiguration();
+
+        CacheConfiguration cache = new CacheConfiguration("ProductCache");
+        cache.setIndexedTypes(Integer.class, Product.class);
+
+        config.setCacheConfiguration(cache);
+        return Ignition.start(config);
     }
 }
