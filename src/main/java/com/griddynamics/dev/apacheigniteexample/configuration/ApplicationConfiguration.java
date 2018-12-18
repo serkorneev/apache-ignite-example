@@ -18,7 +18,7 @@ public class ApplicationConfiguration {
         IgniteConfiguration config = new IgniteConfiguration();
 
         CacheConfiguration cache = new CacheConfiguration("ProductCache");
-        cache.setIndexedTypes(Integer.class, Product.class);
+        cache.setIndexedTypes(String.class, Product.class);
 
         config.setCacheConfiguration(cache);
         return Ignition.start(config);

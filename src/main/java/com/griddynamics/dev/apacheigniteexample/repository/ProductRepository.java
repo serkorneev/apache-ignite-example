@@ -9,5 +9,5 @@ import org.apache.ignite.springdata.repository.config.RepositoryConfig;
 public interface ProductRepository extends IgniteRepository<Product, String> {
 
     @Query("SELECT p.* FROM Product p WHERE p.uniq_id = ?")
-    Product findById(String id);
+    Product findProductById(String id);
 }
