@@ -10,8 +10,7 @@ services:
     container_name: application
     ports: ["8080:8080"]
     depends_on:
-      cassandra:
-        condition: service_healthy
+      - cassandra
     networks:
       - back
 
