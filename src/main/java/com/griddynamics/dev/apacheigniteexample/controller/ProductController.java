@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("products")
 public class ProductController {
@@ -26,13 +24,5 @@ public class ProductController {
             throw new EntityNotFoundException("Entity not found");
         }
         return product;
-    }
-
-    @GetMapping("/")
-    public Iterable<Product> getAll() {
-        Product product = new Product();
-        product.setId(UUID.randomUUID().toString());
-        productRepository.save(product.getId(), product);
-        return productRepository.findAll();
     }
 }
