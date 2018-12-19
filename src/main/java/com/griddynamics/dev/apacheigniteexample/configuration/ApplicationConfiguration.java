@@ -20,7 +20,7 @@ public class ApplicationConfiguration {
     @Bean
     public DataSource cassandraDataSource() {
         DataSource datasource = new DataSource();
-        datasource.setContactPoints("127.0.0.1");
+        datasource.setContactPoints("cassandra");
         datasource.setPort(9042);
         datasource.setUser("cassandra");
         datasource.setPassword("cassandra");

@@ -1,21 +1,30 @@
 version: '3'
+
+networks:
+  back:
+    driver: bridge
+
 services:
   app:
     image: serkorneev/apache-ignite-example
     container_name: application
     ports: ["8080:8080"]
     depends_on:
-      - cassandra
+      cassandra:
+        condition: service_healthy
+    networks:
+      - back
 
   cassandra:
     image: cassandra
     container_name: cassandra
     restart: unless-stopped
-    ports: ["9042:9042"]
     volumes:
       - "./cassandra/cassandra-init.sh:/cassandra-init.sh"
       - "./cassandra/init.cql:/init.cql"
       - "./cassandra/jcpenney_com-ecommerce_sample.csv:/jcpenney_com-ecommerce_sample.csv"
     command: "sh /cassandra-init.sh"
+    networks:
+      - back
     healthcheck:
       test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
