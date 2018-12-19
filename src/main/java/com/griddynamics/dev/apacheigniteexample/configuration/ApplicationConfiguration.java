@@ -54,8 +54,6 @@ public class ApplicationConfiguration {
 
         config.setCacheConfiguration(cache);
 
-        Ignite ignite = Ignition.start(config);
-        ignite.cache("ProductCache").loadCache(null);
-        return ignite;
+        return Ignition.start(config);
     }
 }

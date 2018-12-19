@@ -18,6 +18,7 @@ services:
     image: cassandra
     container_name: cassandra
     restart: unless-stopped
+    ports: ["9042:9042"]
     volumes:
       - "./cassandra/cassandra-init.sh:/cassandra-init.sh"
       - "./cassandra/init.cql:/init.cql"

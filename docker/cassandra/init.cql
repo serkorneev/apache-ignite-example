@@ -20,5 +20,3 @@ CREATE TABLE product (
 );
 
 COPY product (uniq_id,sku,name_title,description,list_price,sale_price,category,category_tree,average_product_rating,product_url,product_image_urls,brand,total_number_reviews,Reviews) FROM 'jcpenney_com-ecommerce_sample.csv' WITH HEADER=TRUE;
-
-
