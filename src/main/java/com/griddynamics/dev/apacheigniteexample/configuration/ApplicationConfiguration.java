@@ -50,6 +50,7 @@ public class ApplicationConfiguration {
         cache.setSqlSchema("product");
         cache.setIndexedTypes(String.class, Product.class);
         cache.setCacheStoreFactory(cacheStoreFactory);
+        cache.setStatisticsEnabled(true);
 
         config.setCacheConfiguration(cache);
 
