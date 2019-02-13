@@ -13,6 +13,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+import javax.cache.expiry.CreatedExpiryPolicy;
+import javax.cache.expiry.Duration;
+import java.util.concurrent.TimeUnit;
+
 @Configuration
 @EnableIgniteRepositories("com.griddynamics.dev.apacheigniteexample.repository")
 public class ApplicationConfiguration {
@@ -51,6 +55,7 @@ public class ApplicationConfiguration {
         cache.setIndexedTypes(String.class, Product.class);
         cache.setCacheStoreFactory(cacheStoreFactory);
         cache.setStatisticsEnabled(true);
+        cache.setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.MINUTES, 1)));
 
         config.setCacheConfiguration(cache);
 
